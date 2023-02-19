@@ -7,5 +7,11 @@ session_start();
 
 require_once 'config.php';
 require_once 'core/base/settings/internal_settings.php';
+use core\base\exceptions\RouteException;
 
-echo 'hello';
+try {
+    RouteController::getInstance()->route();
+}
+catch (RouteException $e){
+    exit($e->getMessage());
+}
